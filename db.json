@@ -1,0 +1,300 @@
+{
+  "users": [
+    {
+      "nombre": "Jenniffer Castañeda",
+      "email": "jenniffer@sena.edu.co",
+      "user": "admin",
+      "pass": "admin123",
+      "rol": "Administrador"
+    },
+    {
+      "nombre": "Pedro Pérez",
+      "email": "pedro@parking.com",
+      "user": "operador",
+      "pass": "operador123",
+      "rol": "Operador"
+    },
+    {
+      "nombre": "Carlos Restrepo",
+      "email": "carlos@gmail.com",
+      "user": "carlos",
+      "pass": "carlos123",
+      "rol": "Cliente"
+    }
+  ],
+  "spots": [
+    {
+      "id": "A1",
+      "zona": "A",
+      "numero": 1,
+      "estado": "Ocupado",
+      "vehiculo": {
+        "placa": "XYZ-777",
+        "entrada": "2026-08-04T05:24:13.005Z"
+      }
+    },
+    {
+      "id": "A2",
+      "zona": "A",
+      "numero": 2,
+      "estado": "Ocupado",
+      "vehiculo": {
+        "placa": "ABC-123",
+        "entrada": "2026-08-04T02:22:05.567Z"
+      }
+    },
+    {
+      "id": "A3",
+      "zona": "A",
+      "numero": 3,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "A4",
+      "zona": "A",
+      "numero": 4,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "A5",
+      "zona": "A",
+      "numero": 5,
+      "estado": "Reservado",
+      "vehiculo": {
+        "placa": "XYZ-987",
+        "cliente": "carlos",
+        "fechaReserva": "2026-08-04T07:22:05.567Z"
+      }
+    },
+    {
+      "id": "A6",
+      "zona": "A",
+      "numero": 6,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "A7",
+      "zona": "A",
+      "numero": 7,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "A8",
+      "zona": "A",
+      "numero": 8,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "A9",
+      "zona": "A",
+      "numero": 9,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "A10",
+      "zona": "A",
+      "numero": 10,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "B1",
+      "zona": "B",
+      "numero": 1,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "B2",
+      "zona": "B",
+      "numero": 2,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "B3",
+      "zona": "B",
+      "numero": 3,
+      "estado": "Ocupado",
+      "vehiculo": {
+        "placa": "KSM-456",
+        "entrada": "2026-08-04T03:52:05.567Z"
+      }
+    },
+    {
+      "id": "B4",
+      "zona": "B",
+      "numero": 4,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "B5",
+      "zona": "B",
+      "numero": 5,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "B6",
+      "zona": "B",
+      "numero": 6,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "B7",
+      "zona": "B",
+      "numero": 7,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "B8",
+      "zona": "B",
+      "numero": 8,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "B9",
+      "zona": "B",
+      "numero": 9,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "B10",
+      "zona": "B",
+      "numero": 10,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C1",
+      "zona": "C",
+      "numero": 1,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C2",
+      "zona": "C",
+      "numero": 2,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C3",
+      "zona": "C",
+      "numero": 3,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C4",
+      "zona": "C",
+      "numero": 4,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C5",
+      "zona": "C",
+      "numero": 5,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C6",
+      "zona": "C",
+      "numero": 6,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C7",
+      "zona": "C",
+      "numero": 7,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C8",
+      "zona": "C",
+      "numero": 8,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C9",
+      "zona": "C",
+      "numero": 9,
+      "estado": "Disponible",
+      "vehiculo": null
+    },
+    {
+      "id": "C10",
+      "zona": "C",
+      "numero": 10,
+      "estado": "Disponible",
+      "vehiculo": null
+    }
+  ],
+  "reservations": [
+    {
+      "id": 1,
+      "cliente": "carlos",
+      "placa": "XYZ-987",
+      "espacio": "A5",
+      "fecha": "2026-08-04T07:22:05.566Z",
+      "estado": "Activa"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "placa": "MNO-456",
+      "espacio": "B2",
+      "entrada": "2026-08-03T21:22:05.567Z",
+      "salida": "2026-08-03T23:22:05.567Z",
+      "valor": 10000
+    },
+    {
+      "id": 2,
+      "placa": "QWE-789",
+      "espacio": "C1",
+      "entrada": "2026-08-04T00:22:05.567Z",
+      "salida": "2026-08-04T01:22:05.567Z",
+      "valor": 5000
+    },
+    {
+      "id": 3,
+      "placa": "RTY-112",
+      "espacio": "A9",
+      "entrada": "2026-08-04T03:22:05.567Z",
+      "salida": "2026-08-04T04:22:05.567Z",
+      "valor": 5000
+    }
+  ],
+  "logs": [
+    {
+      "timestamp": "2026-08-04T05:24:13.005Z",
+      "action": "Vehículo XYZ-777 ingresó al puesto A1."
+    },
+    {
+      "timestamp": "2026-08-04T05:22:53.956Z",
+      "action": "Usuario admin inició sesión (Administrador)."
+    },
+    {
+      "timestamp": "2026-08-04T05:22:05.567Z",
+      "action": "Sistema de parqueo inicializado."
+    }
+  ]
+}

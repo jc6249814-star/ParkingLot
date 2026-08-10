@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parking Lot - Sistema Inteligente de Parqueo</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="db.js"></script>
+  <script defer src="app.js"></script>
+  <!-- Chart.js para gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <img src="imagenes/logofondo.jpeg" alt="Logo Parking Lot" class="logo" />
+      <h1 class="title">Parking Lot</h1>
+      <div id="user-profile-badge" class="user-profile-badge"></div>
+    </div>
+    <nav class="navbar">
+      <button class="nav-btn active" data-view="dashboard">🏠 Inicio</button>
+      <button class="nav-btn" data-view="parking">🚗 Parqueadero</button>
+      <button class="nav-btn" data-view="users">👥 Usuarios</button>
+      <button class="nav-btn" data-view="reports">📊 Reportes</button>
+      <button class="nav-btn" data-view="operations">⚙️ Operaciones</button>
+      <button id="logout-btn" class="logout-btn">🚪 Cerrar sesión</button>
+    </nav>
+  </header>
+
+  <!-- PANTALLA DE INICIO DE SESIÓN -->
+  <section id="login-screen" class="active">
+    <div class="login-card">
+      <h2>Iniciar Sesión</h2>
+      <input type="text" id="username" placeholder="Usuario" />
+      <input type="password" id="password" placeholder="Contraseña" />
+      <button id="login-btn">Ingresar</button>
+      <p class="register-text">
+        ¿No tienes una cuenta?
+        <a href="#" id="show-register">Registrarse</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- PANTALLA DE REGISTRO -->
+  <section id="register-screen" style="display:none;">
+    <div class="register-card">
+      <h2>Crear una cuenta</h2>
+      <input type="text" id="reg-name" placeholder="Nombre completo" />
+      <input type="email" id="reg-email" placeholder="Correo electrónico" />
+      <input type="text" id="reg-user" placeholder="Usuario" />
+      <input type="password" id="reg-pass" placeholder="Contraseña" />
+      <button id="create-account-btn">Registrarse</button>
+      <p class="back-to-login">
+        ¿Ya tienes una cuenta?
+        <a href="#" id="go-login">Inicia sesión</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="view-dashboard" class="dashboard view active">
+    <h2>Panel de Control</h2>
+
+    <div class="stats-grid">
+      <div class="card">
+        <h3>Vehículos Actuales</h3>
+        <p id="stat-vehiculos" class="stat-number">0</p>
+      </div>
+      <div class="card">
+        <h3>Espacios Disponibles</h3>
+        <p id="stat-disponibles" class="stat-number">30</p>
+      </div>
+      <div class="card">
+        <h3>Reservas Activas</h3>
+        <p id="stat-reservas" class="stat-number">0</p>
+      </div>
+      <div class="card">
+        <h3>Ingresos de Hoy</h3>
+        <p id="stat-ingresos" class="stat-number">$0</p>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="chart"></canvas>
+    </div>
+
+    <div class="card logs-card" style="margin-top: 2rem;">
+      <h3>🔔 Actividad del Sistema (Tiempo Real)</h3>
+      <ul id="activity-logs-list" class="activity-logs-list">
+        <!-- Se genera dinámicamente -->
+      </ul>
+    </div>
+
+    <div class="quick-actions" style="margin-top: 2rem;">
+      <button onclick="navegarA('parking')">🗺️ Ver Mapa y Reservar</button>
+      <button onclick="navegarA('operations')">⚙️ Registrar Entrada/Salida</button>
+      <button onclick="navegarA('reports')">📊 Ver Historial Completo</button>
+    </div>
+  </section>
+
+  <!-- Gestión de Parqueaderos -->
+  <section id="view-parking" class="view">
+    <h2>Gestión de Parqueaderos</h2>
+    <p>Haz clic en cualquier espacio disponible para registrar una entrada o crear una reserva.</p>
+    
+    <div class="legend-container">
+      <div class="legend-item"><span class="legend-color disponible"></span> Disponible</div>
+      <div class="legend-item"><span class="legend-color reservado"></span> Reservado</div>
+      <div class="legend-item"><span class="legend-color ocupado"></span> Ocupado</div>
+    </div>
+
+    <div class="parking-grid" id="parking-grid">
+      <!-- Se genera dinámicamente -->
+    </div>
+  </section>
+
+  <!-- Gestión de Usuarios -->
+  <section id="view-users" class="view">
+    <h2>Gestión de Usuarios</h2>
+    <p>Administra las cuentas de acceso del personal y de los clientes registrados.</p>
+
+    <div class="user-management-layout">
+      <!-- Formulario para agregar usuario -->
+      <div class="card user-form-card">
+        <h3>Agregar Nuevo Usuario</h3>
+        <form id="new-user-form">
+          <input type="text" id="usr-name" placeholder="Nombre completo" required />
+          <input type="email" id="usr-email" placeholder="Correo electrónico" required />
+          <input type="text" id="usr-user" placeholder="Nombre de usuario" required />
+          <input type="password" id="usr-pass" placeholder="Contraseña" required />
+          <select id="usr-role" required>
+            <option value="" disabled selected>Selecciona un rol</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Operador">Operador</option>
+            <option value="Cliente">Cliente</option>
+          </select>
+          <button type="submit" class="btn primary">Registrar Usuario</button>
+        </form>
+      </div>
+
+      <!-- Tabla de usuarios -->
+      <div class="card user-table-card">
+        <h3>Usuarios en la Base de Datos</h3>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body">
+              <!-- Se genera dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reportes -->
+  <section id="view-reports" class="view">
+    <h2>Historial de Operaciones y Reportes</h2>
+    <p>Consulta el registro histórico de todas las entradas, salidas y cobros realizados.</p>
+
+    <div class="card report-table-card">
+      <div class="report-header">
+        <h3>Transacciones Registradas</h3>
+        <button class="btn secondary" style="width: auto;" onclick="exportarTransacciones()">📥 Exportar datos</button>
+      </div>
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Placa</th>
+              <th>Espacio</th>
+              <th>Entrada</th>
+              <th>Salida</th>
+              <th>Monto Cobrado</th>
+            </tr>
+          </thead>
+          <tbody id="reports-table-body">
+            <!-- Se genera dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Operaciones -->
+  <section id="view-operations" class="view">
+    <h2>Operaciones Rápidas</h2>
+    <div class="operations-grid">
+      <!-- Registro de entrada -->
+      <div class="card entry-card">
+        <h3>Registrar Entrada Manual</h3>
+        <div class="form-group-custom">
+          <input id="entrada-placa" type="text" placeholder="Placa del vehículo (ej: ABC-123)" />
+          <select id="entrada-espacio">
+            <option value="">Seleccionar puesto libre...</option>
+          </select>
+          <button class="btn primary" onclick="ejecutarEntradaManual()">Registrar Entrada</button>
+        </div>
+      </div>
+
+      <!-- Registro de salida -->
+      <div class="card exit-card">
+        <h3>Registrar Salida Manual</h3>
+        <div class="form-group-custom">
+          <input id="salida-placa" type="text" placeholder="Placa del vehículo" />
+          <button class="btn secondary" onclick="ejecutarSalidaManual()">Procesar Salida</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inspector de Base de Datos -->
+    <div class="card db-inspector-card" style="margin-top: 2rem;">
+      <h3>🔌 Consola de Base de Datos (localStorage)</h3>
+      <p style="font-size: 0.85rem; color: #ccc;">Monitorea en tiempo real las tablas almacenadas en el navegador.</p>
+      <div class="db-inspector-buttons">
+        <button onclick="inspeccionarTabla('users')" class="db-btn">📁 Tabla: usuarios</button>
+        <button onclick="inspeccionarTabla('spots')" class="db-btn">📁 Tabla: espacios</button>
+        <button onclick="inspeccionarTabla('reservations')" class="db-btn">📁 Tabla: reservas</button>
+        <button onclick="inspeccionarTabla('transactions')" class="db-btn">📁 Tabla: transacciones</button>
+        <button onclick="resetearBaseDatos()" class="db-btn danger">⚠️ Restablecer BD</button>
+      </div>
+      <pre id="db-console-output" class="db-console">Haz clic en una tabla para visualizar su contenido estructurado en formato JSON...</pre>
+    </div>
+  </section>
+
+  <!-- MODAL DE RESERVAS Y ENTRADAS -->
+  <div id="booking-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="booking-modal-title">Operar Espacio A1</h3>
+        <button class="close-modal-btn" onclick="cerrarModal()">&times;</button>
+      </div>
+      <form id="booking-modal-form">
+        <input type="hidden" id="modal-spot-id" />
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="modal-action-select">Tipo de registro:</label>
+            <select id="modal-action-select" onchange="toggleModalFields()">
+              <option value="entrada">Registrar Entrada (Parquear ahora)</option>
+              <option value="reserva">Crear Reserva (Agendar para después)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="modal-input-placa">Placa del Vehículo:</label>
+            <input type="text" id="modal-input-placa" placeholder="ABC-123" required />
+          </div>
+          <div class="form-group" id="modal-field-cliente" style="display: none;">
+            <label for="modal-input-cliente">Usuario del Cliente:</label>
+            <input type="text" id="modal-input-cliente" placeholder="Nombre de usuario del cliente (ej: carlos)" />
+          </div>
+          <div class="form-group" id="modal-field-fecha" style="display: none;">
+            <label for="modal-input-fecha">Fecha y Hora de la Reserva:</label>
+            <input type="datetime-local" id="modal-input-fecha" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn secondary-flat" onclick="cerrarModal()">Cancelar</button>
+          <button type="submit" class="btn primary">Procesar Acción</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© 2025 Parking Lot. Todos los derechos reservados.</p>
+      <p>Desarrollado por Jenniffer Andrea Castañeda Leal | SENA - Floridablanca</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">Términos y condiciones</a>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Contacto</a>
+    </div>
+  </footer>
+</body>
+</html>
