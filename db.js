@@ -1,6 +1,6 @@
 // --- Cliente API REST - PARKING LOT ---
 
-const API_BASE_URL = window.location.origin;
+const API_BASE_URL = 'http://localhost:3000';
 
 const DB = {
   // Inicialización (ahora no hace nada del lado del cliente)
