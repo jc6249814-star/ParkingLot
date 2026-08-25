@@ -11,22 +11,22 @@
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  
+
   /* Brand Colors */
   --primary: #6366f1;
   --primary-glow: rgba(99, 102, 241, 0.35);
   --secondary: #06b6d4;
   --secondary-glow: rgba(6, 182, 212, 0.35);
-  
+
   /* Status Colors */
   --disponible: #10b981;
   --disponible-bg: rgba(16, 185, 129, 0.1);
   --disponible-border: rgba(16, 185, 129, 0.25);
-  
+
   --reservado: #f59e0b;
   --reservado-bg: rgba(245, 158, 11, 0.1);
   --reservado-border: rgba(245, 158, 11, 0.25);
-  
+
   --ocupado: #f43f5e;
   --ocupado-bg: rgba(244, 63, 94, 0.1);
   --ocupado-border: rgba(244, 63, 94, 0.25);
@@ -38,7 +38,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-primary);
-  background-image: 
+  background-image:
     radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
     radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.12) 0px, transparent 50%);
   color: var(--text-primary);
@@ -164,12 +164,21 @@ body {
   margin-top: 0.1rem;
 }
 
-.user-badge-role.administrador { color: #f43f5e; }
-.user-badge-role.operador { color: #38bdf8; }
-.user-badge-role.cliente { color: #34d399; }
+.user-badge-role.administrador {
+  color: #f43f5e;
+}
+
+.user-badge-role.operador {
+  color: #38bdf8;
+}
+
+.user-badge-role.cliente {
+  color: #34d399;
+}
 
 /* Screens (Login & Register) */
-#login-screen, #register-screen {
+#login-screen,
+#register-screen {
   flex: 1;
   display: flex;
   align-items: center;
@@ -177,7 +186,8 @@ body {
   padding: 2rem;
 }
 
-.login-card, .register-card {
+.login-card,
+.register-card {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
@@ -190,7 +200,8 @@ body {
   animation: fadeIn 0.5s ease-out;
 }
 
-.login-card h2, .register-card h2 {
+.login-card h2,
+.register-card h2 {
   font-family: 'Outfit', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
@@ -200,7 +211,8 @@ body {
 }
 
 /* Form Inputs */
-input, select {
+input,
+select {
   width: 100%;
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
@@ -214,7 +226,8 @@ input, select {
   transition: all 0.3s;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 10px rgba(99, 102, 241, 0.25);
@@ -222,7 +235,8 @@ input:focus, select:focus {
 }
 
 /* Main Buttons */
-.btn, button:not(.nav-btn, .logout-btn, .close-modal-btn, .db-btn) {
+.btn,
+button:not(.nav-btn, .logout-btn, .close-modal-btn, .db-btn) {
   width: 100%;
   padding: 0.85rem 1.2rem;
   border-radius: 12px;
@@ -238,13 +252,17 @@ input:focus, select:focus {
   border: none;
 }
 
-#login-btn, #create-account-btn, .btn.primary {
+#login-btn,
+#create-account-btn,
+.btn.primary {
   background: linear-gradient(135deg, var(--primary), #4f46e5);
   color: white;
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
 }
 
-#login-btn:hover, #create-account-btn:hover, .btn.primary:hover {
+#login-btn:hover,
+#create-account-btn:hover,
+.btn.primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
 }
@@ -260,20 +278,23 @@ input:focus, select:focus {
   box-shadow: 0 6px 20px rgba(6, 182, 212, 0.5);
 }
 
-.register-text, .back-to-login {
+.register-text,
+.back-to-login {
   margin-top: 1.5rem;
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
-.register-text a, .back-to-login a {
+.register-text a,
+.back-to-login a {
   color: var(--primary);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s;
 }
 
-.register-text a:hover, .back-to-login a:hover {
+.register-text a:hover,
+.back-to-login a:hover {
   color: #818cf8;
   text-decoration: underline;
 }
@@ -466,7 +487,7 @@ input:focus, select:focus {
   border: 1px solid var(--glass-border);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -486,7 +507,11 @@ input:focus, select:focus {
   background: var(--disponible-bg);
   border-color: var(--disponible-border);
 }
-.spot-card.disponible::before { background: var(--disponible); }
+
+.spot-card.disponible::before {
+  background: var(--disponible);
+}
+
 .spot-card.disponible:hover {
   background: rgba(16, 185, 129, 0.2);
   transform: translateY(-5px);
@@ -498,7 +523,11 @@ input:focus, select:focus {
   background: var(--reservado-bg);
   border-color: var(--reservado-border);
 }
-.spot-card.reservado::before { background: var(--reservado); }
+
+.spot-card.reservado::before {
+  background: var(--reservado);
+}
+
 .spot-card.reservado:hover {
   background: rgba(245, 158, 11, 0.2);
   transform: translateY(-5px);
@@ -510,7 +539,11 @@ input:focus, select:focus {
   background: var(--ocupado-bg);
   border-color: var(--ocupado-border);
 }
-.spot-card.ocupado::before { background: var(--ocupado); }
+
+.spot-card.ocupado::before {
+  background: var(--ocupado);
+}
+
 .spot-card.ocupado:hover {
   background: rgba(244, 63, 94, 0.2);
   transform: translateY(-5px);
@@ -598,7 +631,7 @@ input:focus, select:focus {
   border-radius: 24px;
   width: 90%;
   max-width: 440px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
   overflow: hidden;
   transform: translateY(-30px);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -807,7 +840,7 @@ input:focus, select:focus {
   font-size: 0.85rem;
   max-height: 280px;
   overflow-y: auto;
-  box-shadow: inset 0 4px 20px rgba(0,0,0,0.5);
+  box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .db-btn {
@@ -874,36 +907,178 @@ input:focus, select:focus {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* Media Queries */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 1024px) {
+  .view {
+    padding: 1.5rem 3%;
+    width: 94%;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+/* Tablet (Portrait & Landscape) */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
     gap: 1rem;
     padding: 1.2rem 5%;
   }
-  
+
   .navbar {
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 0.5rem;
   }
-  
+
   .user-profile-badge {
     margin-left: 0;
     margin-top: 0.5rem;
     align-self: center;
   }
-  
+
   .view h2 {
     font-size: 1.8rem;
+  }
+
+  .user-management-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .operations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .parking-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-box {
+    width: 95%;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+  .header-left {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .nav-btn,
+  .logout-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  .login-card,
+  .register-card {
+    padding: 1.5rem;
+  }
+
+  .view {
+    padding: 1rem 3%;
+  }
+
+  .view h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .chart-container {
+    height: 250px;
+    padding: 1rem;
+  }
+
+  .parking-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .spot-card {
+    padding: 1rem;
+    min-height: 100px;
+  }
+
+  .spot-id {
+    font-size: 1.3rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .db-inspector-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .db-btn {
+    width: 100%;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-links a {
+    margin: 0;
   }
 }
