@@ -285,6 +285,14 @@
   ],
   "logs": [
     {
+      "timestamp": "2026-09-11T02:09:22.427Z",
+      "action": "Usuario admin inició sesión (Administrador)."
+    },
+    {
+      "timestamp": "2026-09-11T02:08:31.993Z",
+      "action": "Usuario admin inició sesión (Administrador)."
+    },
+    {
       "timestamp": "2026-08-04T05:24:13.005Z",
       "action": "Vehículo XYZ-777 ingresó al puesto A1."
     },
