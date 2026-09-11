@@ -1,157 +1,38 @@
-# Parking Lot - Sistema Inteligente de Parqueo 🚗
+# Parking Lot - Java Web (Servlets & JSP)
 
-Este proyecto consiste en una aplicación web para la administración y control de un parqueadero inteligente. Permite registrar ingresos y salidas de vehículos, calcular tarifas en tiempo real, agendar reservas y gestionar roles de usuarios.
+## Descripción
+Sistema web para la gestión de un parqueadero. Esta versión ha sido migrada de Node.js a una arquitectura Java Web utilizando Servlets y JSP para cumplir con la evidencia GA7-220501096-AA2-EV02 del SENA.
 
-El proyecto ha sido migrado de una arquitectura puramente frontend con `localStorage` a una arquitectura **Frontend + API REST Backend** con base de datos **SQLite**, como parte de la evidencia del SENA:
-**GA7-220501096-AA5-EV04 – API del proyecto**
+## Tecnologías
+* Java 17
+* Jakarta Servlets API 6.0
+* JSP (Jakarta Server Pages) y JSTL
+* HTML5, CSS3
+* Maven
+* Apache Tomcat (v10+)
+* Git / GitHub
 
----
+## Módulos Migrados
+* **Login**: Autenticación simulada mediante Servlet y validación de sesión.
+* **Reservas**: Creación y consulta de reservas utilizando el patrón MVC (JSP -> Servlet -> Modelo).
 
-## 🚀 Tecnologías Utilizadas
+## Arquitectura (MVC)
+* **Model**: Clases Java (`Usuario`, `Reserva`, `Espacio`) que representan los datos.
+* **View**: Archivos JSP (`login.jsp`, `dashboard.jsp`, `reserva.jsp`) que construyen la interfaz del usuario.
+* **Controller**: Clases Servlets (`LoginServlet`, `ReservaServlet`) que reciben peticiones GET/POST, validan y procesan la lógica.
+* **Repository**: Se utiliza `DataStore.java` como una base de datos en memoria (Singleton) simulando la persistencia temporal de los datos.
 
-### Frontend
-- **HTML5** & **CSS3** (Diseño premium responsivo con microanimaciones y Chart.js).
-- **JavaScript (Vanilla JS)** conectado mediante peticiones asíncronas `fetch` a la API REST.
+## Instalación y Ejecución
 
-### Backend
-- **Node.js** & **Express.js** para la lógica del servidor y enrutamiento.
-- **SQLite3** como motor de base de datos relacional ligero y portable.
-- **Bcryptjs** para la encriptación segura de contraseñas de usuarios.
-- **JWT (JsonWebToken)** configurado para control de sesiones seguras.
-- **CORS** habilitado para permitir solicitudes entre diferentes dominios.
-- **Dotenv** para administración segura de variables de entorno.
-- **Nodemon** para recargas automáticas durante el desarrollo.
+1. Clonar el repositorio.
+2. Abrir el proyecto en un IDE compatible con Java Web y Maven (IntelliJ IDEA Ultimate, Eclipse Enterprise, o VS Code con extensiones de Java).
+3. Asegurarse de tener configurado Apache Tomcat 10 o superior (compatible con Jakarta EE 10 / Servlet 6).
+4. Ejecutar el proyecto (`Run on Server` o empaquetar con `mvn clean package` y desplegar el archivo `.war` en Tomcat).
+5. Acceder a la ruta local configurada, por ejemplo: `http://localhost:8080/parkinglot-web`
 
----
+**Credenciales por defecto:**
+* Usuario: `admin` | Clave: `admin123`
+* Usuario: `carlos` | Clave: `carlos123`
 
-## 📂 Estructura del Proyecto
-
-```text
-ParkingLot/
-├── backend/
-│   ├── config/
-│   │   └── database.js       # Conexión e inicialización de SQLite
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── userController.js
-│   │   ├── spotController.js
-│   │   ├── resController.js
-│   │   ├── transController.js
-│   │   └── statsController.js
-│   ├── middleware/
-│   │   └── errorMiddleware.js
-│   ├── models/
-│   │   └── parking.db        # Archivo de base de datos (Autogenerado)
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── userRoutes.js
-│   │   ├── spotRoutes.js
-│   │   ├── resRoutes.js
-│   │   ├── transRoutes.js
-│   │   └── statsRoutes.js
-│   ├── .env
-│   ├── .gitignore
-│   ├── package.json
-│   └── server.js             # Archivo principal del Backend
-├── app.js                    # Controlador Frontend
-├── db.js                     # Cliente API de conexión con el Backend
-├── index.html                # Interfaz Gráfica
-├── style.css                 # Estilos Visuales Premium
-├── Parking-Lot-API.postman_collection.json # Pruebas API en Postman
-└── README.md                 # Guía y Documentación
-```
-
----
-
-## 🛠️ Instalación y Configuración
-
-### Requisitos Previos
-Tener instalado [Node.js](https://nodejs.org/) (versión 16 o superior).
-
-### Paso 1: Configurar el Backend
-1. Abre tu terminal e ingresa a la carpeta `backend`:
-   ```bash
-   cd backend
-   ```
-2. Instala las dependencias necesarias:
-   ```bash
-   npm install
-   ```
-3. Verifica el archivo `.env` en la raíz de la carpeta `backend` con las variables de configuración deseadas:
-   ```env
-   PORT=3000
-   JWT_SECRET=supersecretkeyparkinglot2026
-   DB_PATH=./models/parking.db
-   ```
-
-### Paso 2: Ejecutar el Proyecto
-Para iniciar el servidor Backend en modo desarrollo con nodemon:
-```bash
-npm run dev
-```
-
-El servidor iniciará en http://localhost:3000 y automáticamente generará las tablas SQLite con registros de prueba.
-
-### Paso 3: Abrir el Frontend
-El frontend se puede servir directamente desde el puerto del backend ingresando a:
-👉 **http://localhost:3000**
-
-También puedes usar extensiones como **Live Server** de VSCode (que habitualmente corre en el puerto 5500) u otro servidor local, ya que la comunicación CORS está completamente habilitada en el backend.
-
----
-
-## 📡 Tabla de Endpoints de la API REST
-
-A continuación se detallan los endpoints disponibles en la API:
-
-| Método | Endpoint | Descripción |
-| :--- | :--- | :--- |
-| **POST** | `/api/auth/register` | Registrar un nuevo usuario |
-| **POST** | `/api/auth/login` | Iniciar sesión y recibir credenciales |
-| **GET** | `/api/usuarios` | Consultar la lista de usuarios |
-| **GET** | `/api/usuarios/:id` | Consultar un usuario específico (por ID o Username) |
-| **POST** | `/api/usuarios` | Crear un nuevo usuario |
-| **PUT** | `/api/usuarios/:id` | Actualizar un usuario existente |
-| **DELETE** | `/api/usuarios/:id` | Eliminar un usuario |
-| **GET** | `/api/espacios` | Consultar el estado de todos los puestos |
-| **GET** | `/api/espacios/:id` | Consultar un puesto específico |
-| **POST** | `/api/espacios` | Crear un nuevo puesto de parqueo |
-| **PUT** | `/api/espacios/:id` | Modificar estado/información de un puesto |
-| **DELETE** | `/api/espacios/:id` | Eliminar un puesto de parqueo |
-| **GET** | `/api/reservas` | Consultar la lista de reservas |
-| **GET** | `/api/reservas/:id` | Consultar detalle de una reserva |
-| **POST** | `/api/reservas` | Agendar una nueva reserva de espacio |
-| **PUT** | `/api/reservas/:id` | Modificar datos de una reserva |
-| **DELETE** | `/api/reservas/:id` | Cancelar o eliminar una reserva |
-| **GET** | `/api/transacciones` | Consultar el historial de cobros realizados |
-| **POST** | `/api/transacciones` | Registrar una nueva transacción |
-| **PUT** | `/api/transacciones/:id` | Modificar datos de cobro |
-| **DELETE** | `/api/transacciones/:id` | Eliminar registro de transacción |
-| **GET** | `/api/estadisticas` | Obtener métricas y datos útiles para el Dashboard |
-
----
-
-## 🧪 Pruebas en Postman
-
-El proyecto incluye el archivo `Parking-Lot-API.postman_collection.json`. 
-Para probar la API:
-1. Abre **Postman**.
-2. Presiona el botón **Import** (Importar) en la esquina superior izquierda.
-3. Arrastra o selecciona el archivo `Parking-Lot-API.postman_collection.json`.
-4. ¡Listo! Tendrás todas las peticiones organizadas por carpetas y listas para ejecutar con un solo clic.
-
----
-
-## 🛠️ Credenciales por Defecto (Base de Datos Inicial)
-
-Al iniciar el sistema por primera vez, se crean automáticamente las siguientes cuentas de prueba:
-
-- **Administrador**:
-  - Usuario: `admin`
-  - Contraseña: `admin123`
-- **Operador**:
-  - Usuario: `operador`
-  - Contraseña: `operador123`
-- **Cliente**:
-  - Usuario: `carlos`
-  - Contraseña: `carlos123`
+## Pruebas
+Revisar el archivo `INFORME_PRUEBAS.md` para ver el detalle de los casos de prueba ejecutados según lo requerido en la evidencia.
